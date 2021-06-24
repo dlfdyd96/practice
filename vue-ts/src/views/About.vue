@@ -1,18 +1,18 @@
 <template>
   <div class="about">
     <h1>This is an about page</h1>
-    <List></List>
+    <TodoList />
   </div>
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
-import List from "@/components/List.vue";
+import { defineComponent } from "vue";
+import TodoList from "@/components/TodoList.vue";
 
-@Options({
+export default defineComponent({
+  name: "About",
   components: {
-    List,
+    TodoList,
   },
-})
-export default class About extends Vue {}
+});
 </script>

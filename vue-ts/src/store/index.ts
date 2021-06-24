@@ -1,15 +1,21 @@
-// import { ItemList } from "./interfaces/item-list.interface";
-import { createStore } from "vuex";
+import { inject, provide } from "vue";
+import { createStore, Store } from "vuex";
 import { ItemList } from "./interfaces/item-list.interface";
 
-export default createStore({
-  state: {
-    itemList: [
-      { id: 1, content: "한발남았네", status: false },
-      { id: 2, content: "한발남았네", status: false },
-      { id: 3, content: "한발남았네", status: true },
-    ],
-  },
+interface RootState {
+  itemList: ItemList[];
+}
+
+const initalState: RootState = {
+  itemList: [
+    { id: 1, content: "한발남았네", status: false },
+    { id: 2, content: "한발남았네", status: false },
+    { id: 3, content: "한발남았네", status: true },
+  ],
+};
+
+const store = createStore({
+  state: initalState,
   mutations: {
     removeItem(state, payload: { id: number }) {
       const idx = state.itemList.findIndex(
@@ -27,3 +33,20 @@ export default createStore({
   actions: {},
   modules: {},
 });
+
+// Provide 구분 값
+const StoreSymbol = Symbol();
+
+// 저장소 제공 헬퍼 함수
+export const provideStore = () => {
+  provide(StoreSymbol, store);
+};
+
+// 저장소 주입 헬퍼 함수
+export const useStore = () => {
+  const store = inject<Store<RootState>>(StoreSymbol);
+  if (!store) throw new Error("No Store provided");
+  return store;
+};
+
+export default store;
