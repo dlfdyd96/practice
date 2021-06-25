@@ -1,24 +1,10 @@
-# vue-ts
+# Vue Todo List
 
-## Project setup
-```
-npm install
-```
+## 📝 TODO LIST
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- [x] settings tailwind css
+- [x] settings vuex composition api
+- [ ] List Component
+- [ ] input Component
+- [ ] local storage
+- [ ] 이쁘게 꾸미기
