@@ -4,7 +4,7 @@
 
 - [x] settings tailwind css
 - [x] settings vuex composition api
-- [ ] List Component
+- [x] List Component
 - [ ] input Component
-- [ ] local storage
+- [x] local storage vuex
 - [ ] 이쁘게 꾸미기

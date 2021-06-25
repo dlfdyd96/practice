@@ -6,12 +6,33 @@ interface RootState {
   itemList: ItemList[];
 }
 
+const storage = {
+  fetch(): ItemList[] {
+    const arr: ItemList[] = [];
+
+    if (localStorage.length > 0) {
+      for (let i = 0; i < localStorage.length; i++) {
+        if (
+          localStorage.key(i) !== "loglevel:webpack-dev-server" &&
+          localStorage.key(i) !== "userName"
+        ) {
+          const item = localStorage.getItem(localStorage.key(i)!);
+          console.log(JSON.parse(item!));
+          arr.push(JSON.parse(localStorage.getItem(localStorage.key(i)!)!));
+        }
+      }
+    }
+    return arr;
+  },
+};
+
 const initalState: RootState = {
-  itemList: [
-    { id: 1, content: "한발남았네", status: false },
-    { id: 2, content: "한발남았네", status: false },
-    { id: 3, content: "한발남았네", status: true },
-  ],
+  itemList: storage.fetch(),
+  // [
+  //   { id: 1, content: "한발남았네", status: false },
+  //   { id: 2, content: "한발남았네", status: false },
+  //   { id: 3, content: "한발남았네", status: true },
+  // ],
 };
 
 const store = createStore({
