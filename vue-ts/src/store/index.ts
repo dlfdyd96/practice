@@ -11,18 +11,6 @@ const storage = {
     const arr: ItemList[] = JSON.parse(localStorage.getItem("state")!) || [];
     console.log(arr);
 
-    // if (localStorage.length > 0) {
-    //   for (let i = 0; i < localStorage.length; i++) {
-    //     if (
-    //       localStorage.key(i) == "state"
-    //     ) {
-    //       const item = localStorage.getItem(localStorage.key(i)!);
-    //       console.log(JSON.parse(item!));
-    //       arr.push(JSON.parse(localStorage.getItem(localStorage.key(i)!)!));
-    //     }
-    //   }
-    // }
-
     return arr;
   },
 };
@@ -61,6 +49,7 @@ const store = createStore({
         (item: ItemList) => item.id === payload.id
       );
       state.itemList.splice(idx, 1);
+      localStorage.setItem("state", JSON.stringify(state.itemList));
       //localStorage.removeItem();//
     },
     changeStatus(state, payload: { item: ItemList }) {
@@ -68,6 +57,7 @@ const store = createStore({
         (item: ItemList) => item.id === payload.item.id
       );
       state.itemList[idx].status = !state.itemList[idx].status;
+      localStorage.setItem("state", JSON.stringify(state.itemList));
     },
   },
   actions: {},
