@@ -48,6 +48,7 @@ export default defineComponent({
     const submit = () => {
       console.log(`눌럿다`);
       commit("addItem", { inputValue: inputValue.value });
+      inputValue.value = "";
     };
 
     return { inputValue, submit };
