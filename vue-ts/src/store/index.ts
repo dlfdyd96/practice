@@ -8,20 +8,21 @@ interface RootState {
 
 const storage = {
   fetch(): ItemList[] {
-    const arr: ItemList[] = [];
+    const arr: ItemList[] = JSON.parse(localStorage.getItem("state")!) || [];
+    console.log(arr);
 
-    if (localStorage.length > 0) {
-      for (let i = 0; i < localStorage.length; i++) {
-        if (
-          localStorage.key(i) !== "loglevel:webpack-dev-server" &&
-          localStorage.key(i) !== "userName"
-        ) {
-          const item = localStorage.getItem(localStorage.key(i)!);
-          console.log(JSON.parse(item!));
-          arr.push(JSON.parse(localStorage.getItem(localStorage.key(i)!)!));
-        }
-      }
-    }
+    // if (localStorage.length > 0) {
+    //   for (let i = 0; i < localStorage.length; i++) {
+    //     if (
+    //       localStorage.key(i) == "state"
+    //     ) {
+    //       const item = localStorage.getItem(localStorage.key(i)!);
+    //       console.log(JSON.parse(item!));
+    //       arr.push(JSON.parse(localStorage.getItem(localStorage.key(i)!)!));
+    //     }
+    //   }
+    // }
+
     return arr;
   },
 };
@@ -38,11 +39,29 @@ const initalState: RootState = {
 const store = createStore({
   state: initalState,
   mutations: {
+    addItem(state, payload: { inputValue: string }) {
+      if (payload.inputValue === "") return;
+
+      const id = Math.random().toString().slice(2);
+      const text = payload.inputValue;
+
+      console.log(text);
+
+      const currentItem: ItemList = {
+        id: +id,
+        content: text,
+        status: false,
+      };
+
+      state.itemList.push(currentItem);
+      localStorage.setItem("state", JSON.stringify(state.itemList));
+    },
     removeItem(state, payload: { id: number }) {
       const idx = state.itemList.findIndex(
         (item: ItemList) => item.id === payload.id
       );
       state.itemList.splice(idx, 1);
+      //localStorage.removeItem();//
     },
     changeStatus(state, payload: { item: ItemList }) {
       const idx = state.itemList.findIndex(
