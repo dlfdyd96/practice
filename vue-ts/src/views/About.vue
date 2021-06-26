@@ -1,8 +1,8 @@
 <template>
-  <div class="about">
+  <div class="about max-w-screen-lg flex flex-col justify-center mx-10">
     <h1>This is an about page</h1>
-    <InputBox />
-    <TodoList />
+    <div><InputBox /></div>
+    <div><TodoList /></div>
   </div>
 </template>
 

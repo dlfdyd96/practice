@@ -10,6 +10,7 @@
         w-full
         py-2
         px-3
+        mr-1
         text-gray-700
         leading-tight
         focus:outline-none focus:shadow-outline
@@ -31,7 +32,7 @@
       "
       @click="submit"
     >
-      <slot />
+      <i class="fas fa-plus"></i>
     </button>
   </div>
 </template>
