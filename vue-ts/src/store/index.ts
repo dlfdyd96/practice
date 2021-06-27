@@ -1,5 +1,4 @@
-import { inject, provide } from "vue";
-import { createStore, Store } from "vuex";
+import { createStore } from "vuex";
 import { ItemList } from "./interfaces/item-list.interface";
 
 interface RootState {
@@ -15,17 +14,10 @@ const storage = {
   },
 };
 
-const initalState: RootState = {
-  itemList: storage.fetch(),
-  // [
-  //   { id: 1, content: "한발남았네", status: false },
-  //   { id: 2, content: "한발남았네", status: false },
-  //   { id: 3, content: "한발남았네", status: true },
-  // ],
-};
-
-const store = createStore({
-  state: initalState,
+export default createStore<RootState>({
+  state: {
+    itemList: storage.fetch(),
+  },
   mutations: {
     addItem(state, payload: { inputValue: string }) {
       if (payload.inputValue === "") return;
@@ -63,20 +55,3 @@ const store = createStore({
   actions: {},
   modules: {},
 });
-
-// Provide 구분 값
-const StoreSymbol = Symbol();
-
-// 저장소 제공 헬퍼 함수
-export const provideStore = () => {
-  provide(StoreSymbol, store);
-};
-
-// 저장소 주입 헬퍼 함수
-export const useStore = () => {
-  const store = inject<Store<RootState>>(StoreSymbol);
-  if (!store) throw new Error("No Store provided");
-  return store;
-};
-
-export default store;

@@ -38,8 +38,8 @@
 </template>
 
 <script lang="ts">
-import { useStore } from "@/store";
 import { defineComponent, ref } from "vue";
+import { useStore } from "vuex";
 
 export default defineComponent({
   setup() {

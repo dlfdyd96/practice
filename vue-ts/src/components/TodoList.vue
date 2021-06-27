@@ -41,9 +41,9 @@
 </template>
 
 <script lang="ts">
-import { useStore } from "@/store";
 import { ItemList } from "@/store/interfaces/item-list.interface";
 import { computed, defineComponent } from "vue";
+import { useStore } from "vuex";
 // import ListItemVue from "./ListItem.vue";
 
 export default defineComponent({

@@ -6,17 +6,6 @@
   <router-view />
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-import { provideStore } from "./store";
-
-export default defineComponent({
-  setup() {
-    provideStore();
-  },
-});
-</script>
-
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
