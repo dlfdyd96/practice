@@ -8,4 +8,6 @@
 - [x] input Component
 - [x] local storage vuex
 - [ ] logic Refactoring
+  - [x] vuex refactoring
+  - [ ] localstorage nullable problem
 - [ ] 이쁘게 꾸미기
